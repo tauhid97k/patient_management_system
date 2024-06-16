@@ -4,9 +4,9 @@ import "../css/app.css";
 
 import { createInertiaApp } from "@inertiajs/react";
 import { createRoot } from "react-dom/client";
-import GuestLayout from "./Layouts/GuestLayout";
-import AuthLayout from "./Layouts/AuthLayout";
-import AppLayout from "./Layouts/AppLayout";
+import GuestLayout from "@/Layouts/GuestLayout";
+import AuthLayout from "@/Layouts/AuthLayout";
+import AppLayout from "@/Layouts/AppLayout";
 
 createInertiaApp({
     resolve: (name) => {
@@ -23,5 +23,8 @@ createInertiaApp({
     },
     setup({ el, App, props }) {
         createRoot(el).render(<App {...props} />);
+    },
+    progress: {
+        color: "#fff",
     },
 });

@@ -1,3 +1,42 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    @apply dark:bg-zinc-900 text-gray-900 dark:text-gray-100 antialiased;
+}
+
+/* Icons */
+.icon {
+    @apply size-5;
+}
+
+/* Buttons */
+.btn {
+    @apply flex items-center justify-center gap-x-2 py-2 px-3 text-center font-medium rounded-md border border-transparent text-white disabled:opacity-70 disabled:pointer-events-none transition-colors;
+}
+.btn-primary {
+    @apply bg-zinc-600 hover:bg-zinc-600/80;
+}
+.btn-muted {
+    @apply bg-zinc-700 hover:bg-zinc-700/80;
+}
+
+/* Card */
+.card {
+    @apply p-5 rounded-lg bg-zinc-800 border border-zinc-700;
+}
+
+/* Form */
+.input-label {
+    @apply font-medium tracking-wider;
+}
+.input {
+    @apply w-full rounded-md focus:border-zinc-400 focus:ring-0 dark:bg-zinc-900 dark:border-zinc-700 dark:text-white;
+}
+.input-checkbox {
+    @apply size-[18px] focus:ring-0 focus:ring-offset-0 border-zinc-700 rounded bg-zinc-900 checked:text-zinc-600;
+}
+.input-error {
+    @apply text-red-400 text-sm;
+}

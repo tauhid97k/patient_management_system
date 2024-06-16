@@ -1,8 +1,11 @@
+import Navbar from "../Components/Navbar";
+
 const GuestLayout = ({ children }) => {
     return (
-        <div>
-            <div>{children}</div>
-        </div>
+        <>
+            <Navbar />
+            <div className="container">{children}</div>
+        </>
     );
 };
 

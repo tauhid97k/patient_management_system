@@ -1,7 +1,7 @@
 const AuthLayout = ({ children }) => {
     return (
-        <div>
-            <main>{children}</main>
+        <div className="container min-h-screen py-4 grid place-items-center">
+            <main className="w-full max-w-sm">{children}</main>
         </div>
     );
 };
