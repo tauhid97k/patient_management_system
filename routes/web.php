@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 
@@ -8,7 +9,10 @@ Route::get('/', function () {
 });
 
 // Public Routes
-Route::inertia('/login', 'Auth/Login')->name('login');
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthController::class, 'view'])->name('login.view');
+    Route::post('/login', [AuthController::class, 'login'])->name('login');
+});
 
 // Private Routes
 Route::middleware(['auth'])->group(function () {

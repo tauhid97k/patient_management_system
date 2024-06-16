@@ -38,5 +38,5 @@ body {
     @apply size-[18px] focus:ring-0 focus:ring-offset-0 border-zinc-700 rounded bg-zinc-900 checked:text-zinc-600;
 }
 .input-error {
-    @apply text-red-400 text-sm;
+    @apply text-red-400 text-[15px];
 }
