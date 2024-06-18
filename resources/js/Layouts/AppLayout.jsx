@@ -1,8 +1,11 @@
+import Sidebar from "@/Components/Sidebar/Index";
+
 const AppLayout = ({ children }) => {
     return (
-        <div>
+        <>
+            <Sidebar />
             <main>{children}</main>
-        </div>
+        </>
     );
 };
 

@@ -14,7 +14,7 @@ const LoginPage = () => {
 
     return (
         <div className="card">
-            <h1 className="text-2xl font-medium text-center border-b border-zinc-700 pb-4 mb-4">
+            <h1 className="text-2xl font-medium text-center border-b border-zinc-200 dark:border-zinc-700 pb-4 mb-4">
                 Login
             </h1>
             <form onSubmit={handleSubmit}>
@@ -61,13 +61,13 @@ const LoginPage = () => {
                                 name="remember"
                                 className="input-checkbox"
                             />
-                            <span className="text-zinc-400 whitespace-nowrap">
+                            <span className="text-zinc-700 dark:text-zinc-400 whitespace-nowrap">
                                 Remember me
                             </span>
                         </label>
                         <Link
                             href="/forgot-password"
-                            className="text-zinc-400 hover:underline whitespace-nowrap"
+                            className="text-zinc-700 dark:text-zinc-400 hover:underline whitespace-nowrap"
                         >
                             Forgot password?
                         </Link>
