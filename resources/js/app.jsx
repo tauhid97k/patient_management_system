@@ -1,5 +1,4 @@
 import "./bootstrap";
-import "preline";
 import "../css/app.css";
 
 import { createInertiaApp } from "@inertiajs/react";
