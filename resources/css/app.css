@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-    @apply bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-200 antialiased;
+    @apply bg-zinc-50 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-200 antialiased;
 }
 
 /* Icons */
@@ -42,8 +42,12 @@ body {
 .input {
     @apply w-full rounded-md focus:ring-0 border-zinc-200 dark:border-zinc-700 dark:focus:border-blue-700 bg-transparent dark:bg-zinc-900;
 }
+.input-contrast {
+    @apply max-w-96 rounded-md focus:ring-0 border-zinc-200 dark:border-zinc-700 dark:focus:border-zinc-500 bg-white dark:bg-zinc-800;
+}
 /* Autofill selection color on dark */
-.dark .input {
+.dark .input,
+.dark .input-contrast {
     color-scheme: dark;
 }
 .input-checkbox {

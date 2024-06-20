@@ -33,7 +33,7 @@ export const DropdownItems = ({ children }) => {
         >
             <MenuItems
                 anchor="bottom end"
-                className="min-w-48 bg-white shadow-lg rounded-md p-2 mt-2 dark:bg-zinc-800 focus:outline-none"
+                className="min-w-48 z-50 bg-white shadow-lg rounded-md p-2 mt-2 dark:bg-zinc-800 focus:outline-none"
             >
                 {children}
             </MenuItems>

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePatientRequest;
-use App\Http\Requests\UpdatePatientRequest;
+use Illuminate\Http\Request;
+use App\Http\Requests\Patient\StorePatientRequest;
+use App\Http\Requests\Patient\UpdatePatientRequest;
 use App\Models\Patient;
 
 class PatientController extends Controller
@@ -11,9 +12,13 @@ class PatientController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return inertia('Dashboard/Patients/Index');
+        $patients = Patient::query()->when($request->input('search'), function ($query, $search) {
+            $query->where('name', 'like', "%{$search}%");
+        })->orderBy('created_at', 'DESC')->paginate()->withQueryString();
+
+        return inertia('Dashboard/Patients/Index', ['patients' => $patients, 'filters' => $request->only('search')]);
     }
 
     /**
