@@ -1,5 +1,6 @@
 import { Link } from "@inertiajs/react";
 import { MenuIcon } from "lucide-react";
+import Menu from "./Menu";
 
 const Sidebar = () => {
     return (
@@ -15,7 +16,7 @@ const Sidebar = () => {
             </div>
 
             {/* Sidebar Menu */}
-            <div className="grow flex flex-col overflow-y-auto p-4">Menu</div>
+            <Menu />
         </aside>
     );
 };

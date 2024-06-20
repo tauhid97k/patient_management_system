@@ -1,5 +1,5 @@
 import { Link, usePage } from "@inertiajs/react";
-import { LayoutDashboard, LogIn, LogOut, UserRoundCog } from "lucide-react";
+import { LayoutGrid, LogIn, LogOut, UserRoundCog } from "lucide-react";
 import ThemeToggler from "./ThemeToggler";
 import {
     Dropdown,
@@ -52,11 +52,11 @@ const Navbar = () => {
                                     href={route("dashboard")}
                                     className="dropdown-link"
                                 >
-                                    <LayoutDashboard />
+                                    <LayoutGrid className="icon" />
                                     <span>Dashboard</span>
                                 </DropdownItem>
                                 <DropdownItem className="dropdown-link">
-                                    <UserRoundCog />
+                                    <UserRoundCog className="icon" />
                                     <span>Profile</span>
                                 </DropdownItem>
                                 <DropdownItem
@@ -68,7 +68,7 @@ const Navbar = () => {
                                         href={route("logout")}
                                         method="post"
                                     >
-                                        <LogOut />
+                                        <LogOut className="icon" />
                                         <span>Logout</span>
                                     </Link>
                                 </DropdownItem>
