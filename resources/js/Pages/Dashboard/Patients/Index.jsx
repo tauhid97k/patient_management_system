@@ -1,10 +1,19 @@
 import { DataTable } from "@/Components/Table";
-import { Link, router } from "@inertiajs/react";
-import { useState } from "react";
+import { Link, router, usePage } from "@inertiajs/react";
+import { useEffect, useState } from "react";
 import { columns } from "./columns";
+import { toast } from "sonner";
 
 const PatientsPage = ({ patients, filters }) => {
     const [search] = useState(filters.search);
+    const { flash } = usePage().props;
+
+    // Show flash message (If exist)
+    useEffect(() => {
+        if (flash.message) {
+            toast.success(flash.message);
+        }
+    });
 
     // Search API (No debounce added for now)
     const handleSearch = (e) => {
