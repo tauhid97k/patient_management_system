@@ -6,7 +6,7 @@ const MenuItem = ({ icon, text, active = false, ...props }) => {
             {...props}
             className={`sidebar-link ${
                 active
-                    ? "dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-700"
+                    ? "text-white bg-blue-600 dark:text-zinc-300 dark:bg-zinc-700"
                     : "dark:hover:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-700"
             }`}
         >

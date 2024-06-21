@@ -47,7 +47,7 @@ export function DataTable({ columns, data }) {
                             >
                                 {row.getVisibleCells().map((cell) => (
                                     <td
-                                        className="px-6 py-4 align-middle [&:has([role=checkbox])]:pr-0 max-w-[230px] truncate text-zinc-600 dark:text-zinc-400"
+                                        className="px-6 py-4 align-middle [&:has([role=checkbox])]:pr-0 max-w-[230px] truncate text-zinc-600 dark:text-zinc-400 border-b border-zinc-200 dark:border-zinc-700"
                                         key={cell.id}
                                     >
                                         {flexRender(
@@ -74,10 +74,10 @@ export function DataTable({ columns, data }) {
                 {data.links.map((link) =>
                     link.url ? (
                         <Link
-                            className={`h-10 min-w-10 flex items-center justify-center rounded p-3 font-bold text-zinc-700 dark:text-zinc-300 ${
+                            className={`h-10 min-w-10 flex items-center justify-center rounded p-3 font-bold ${
                                 link.active
-                                    ? "bg-zinc-200 dark:bg-zinc-700"
-                                    : "hover:bg-zinc-200 dark:hover:bg-zinc-700"
+                                    ? "bg-blue-600 text-white dark:text-zinc-300 dark:bg-zinc-700"
+                                    : "hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-300"
                             }`}
                             key={link.label}
                             preserveScroll

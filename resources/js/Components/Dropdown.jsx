@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import {
     Menu,
     MenuButton,
@@ -21,7 +22,7 @@ export const DropdownTrigger = ({ children, as = "button", ...props }) => {
 };
 
 // Dropdown Items
-export const DropdownItems = ({ children }) => {
+export const DropdownItems = ({ children, className }) => {
     return (
         <Transition
             enter="transition ease-out duration-75"
@@ -33,7 +34,10 @@ export const DropdownItems = ({ children }) => {
         >
             <MenuItems
                 anchor="bottom end"
-                className="min-w-48 z-50 bg-white shadow-lg rounded-md p-2 mt-2 dark:bg-zinc-800 focus:outline-none"
+                className={cn(
+                    "min-w-48 z-50 bg-white shadow-lg rounded-md p-2 mt-2 dark:bg-zinc-800 focus:outline-none",
+                    className
+                )}
             >
                 {children}
             </MenuItems>
@@ -42,9 +46,21 @@ export const DropdownItems = ({ children }) => {
 };
 
 // Dropdown Item
-export const DropdownItem = ({ children, as = "button", ...props }) => {
+export const DropdownItem = ({
+    children,
+    as = "button",
+    className,
+    ...props
+}) => {
     return (
-        <MenuItem as={as} {...props}>
+        <MenuItem
+            as={as}
+            className={cn(
+                "w-full flex items-center gap-x-1.5 py-2 px-3 rounded-md hover:bg-blue-600 focus:outline-none font-medium hover:text-white dark:text-zinc-400 dark:hover:bg-zinc-700 dark:hover:text-zinc-300",
+                className
+            )}
+            {...props}
+        >
             {children}
         </MenuItem>
     );

@@ -46,14 +46,11 @@ const Header = () => {
                             </svg>
                         </DropdownTrigger>
                         <DropdownItems>
-                            <DropdownItem className="dropdown-link">
+                            <DropdownItem>
                                 <UserRoundCog className="icon" />
                                 <span>Profile</span>
                             </DropdownItem>
-                            <DropdownItem
-                                as={Fragment}
-                                className="dropdown-link"
-                            >
+                            <DropdownItem as={Fragment}>
                                 <Link
                                     as="button"
                                     href={route("logout")}
