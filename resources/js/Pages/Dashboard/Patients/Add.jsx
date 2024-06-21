@@ -1,8 +1,8 @@
-import { Head, Link, useForm } from "@inertiajs/react";
+import { Head, useForm } from "@inertiajs/react";
 import { toast } from "sonner";
 
 const PatientCreatePage = () => {
-    const { setData, processing, errors, post } = useForm({
+    const { setData, processing, errors, post, data } = useForm({
         name: "",
         age: "",
         gender: "",
@@ -12,6 +12,8 @@ const PatientCreatePage = () => {
         address: "",
         note: "",
     });
+
+    console.log(data);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -72,6 +74,9 @@ const PatientCreatePage = () => {
                             name="gender"
                             className="input-contrast"
                         >
+                            <option value="" disabled selected hidden>
+                                Select gender
+                            </option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                             <option value="other">Other</option>
@@ -92,6 +97,9 @@ const PatientCreatePage = () => {
                             name="blood_group"
                             className="input-contrast"
                         >
+                            <option value="" disabled selected hidden>
+                                Select blood group
+                            </option>
                             <option value="a_positive">A Positive</option>
                             <option value="a_negative">A Negative</option>
                             <option value="b_positive">B Positive</option>
@@ -117,8 +125,11 @@ const PatientCreatePage = () => {
                             name="marital_status"
                             className="input-contrast"
                         >
-                            <option value="married">Married</option>
+                            <option value="" disabled selected hidden>
+                                Select marital status
+                            </option>
                             <option value="unmarried">Unmarried</option>
+                            <option value="married">Married</option>
                         </select>
                         {errors.marital_status && (
                             <p className="input-error">
