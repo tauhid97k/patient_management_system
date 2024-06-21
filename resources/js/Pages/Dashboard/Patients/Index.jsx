@@ -20,7 +20,7 @@ const PatientsPage = ({ patients, filters }) => {
         <>
             <div className="flex items-center justify-between mb-5">
                 <h2 className="text-2xl font-medium">Patients</h2>
-                <Link href="#" className="btn">
+                <Link href="#" className="btn btn-primary">
                     Add Patient
                 </Link>
             </div>

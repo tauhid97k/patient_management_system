@@ -66,6 +66,8 @@ class PatientController extends Controller
      */
     public function destroy(Patient $patient)
     {
-        //
+        $patient->delete();
+
+        return redirect()->back()->with('message', 'Patient deleted');
     }
 }

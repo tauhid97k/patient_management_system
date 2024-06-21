@@ -71,7 +71,10 @@ const Navbar = () => {
                             </DropdownItems>
                         </Dropdown>
                     ) : (
-                        <Link href={route("login.view")} className="btn">
+                        <Link
+                            href={route("login.view")}
+                            className="btn btn-primary"
+                        >
                             <LogIn className="icon" /> Login
                         </Link>
                     )}
