@@ -7,15 +7,20 @@ import {
     DropdownItems,
     DropdownTrigger,
 } from "./Dropdown";
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
+import { SidebarContext } from "@/Layouts/AppLayout";
 
 const Header = () => {
     const { auth } = usePage().props;
+    const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
 
     return (
         <header className="h-16 sticky top-0 z-20 px-5 flex items-center bg-white dark:bg-zinc-800 border-b border-zinc-200 dark:border-zinc-700">
             <div className="w-full flex items-center justify-between gap-4">
-                <button className="btn-icon">
+                <button
+                    onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                    className="btn-icon"
+                >
                     <MenuIcon />
                 </button>
                 <div className="flex items-center gap-4">

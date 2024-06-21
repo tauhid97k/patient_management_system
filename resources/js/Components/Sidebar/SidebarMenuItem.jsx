@@ -1,6 +1,6 @@
 import { Link } from "@inertiajs/react";
 
-const MenuItem = ({ icon, text, active = false, ...props }) => {
+const SidebarMenuItem = ({ icon, text, active = false, ...props }) => {
     return (
         <Link
             {...props}
@@ -16,4 +16,4 @@ const MenuItem = ({ icon, text, active = false, ...props }) => {
     );
 };
 
-export default MenuItem;
+export default SidebarMenuItem;

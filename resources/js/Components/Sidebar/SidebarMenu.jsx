@@ -1,4 +1,4 @@
-import MenuItem from "./MenuItem";
+import SidebarMenuItem from "./SidebarMenuItem";
 import {
     ClipboardPlus,
     LayoutGrid,
@@ -6,28 +6,28 @@ import {
     UsersRound,
 } from "lucide-react";
 
-const Menu = () => {
+const SidebarMenu = () => {
     return (
         <nav className="grow flex flex-col gap-1.5 overflow-y-auto p-4">
-            <MenuItem
+            <SidebarMenuItem
                 href={route("dashboard")}
                 active={route().current("dashboard")}
                 icon={<LayoutGrid className="size-[22px]" />}
                 text="Dashboard"
             />
-            <MenuItem
+            <SidebarMenuItem
                 href={route("users.index")}
                 active={route().current("users.index")}
                 icon={<UsersRound className="size-[22px]" />}
                 text="Users"
             />
-            <MenuItem
+            <SidebarMenuItem
                 href={route("patients.index")}
                 active={route().current("patients.index")}
                 icon={<ClipboardPlus className="size-[22px]" />}
                 text="Patients"
             />
-            <MenuItem
+            <SidebarMenuItem
                 href="#"
                 icon={<ShieldCheck className="size-[22px]" />}
                 text="Role Permissions"
@@ -36,4 +36,4 @@ const Menu = () => {
     );
 };
 
-export default Menu;
+export default SidebarMenu;
