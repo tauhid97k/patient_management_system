@@ -20,7 +20,10 @@ const PatientsPage = ({ patients, filters }) => {
         <>
             <div className="flex items-center justify-between mb-5">
                 <h2 className="text-2xl font-medium">Patients</h2>
-                <Link href="#" className="btn btn-primary">
+                <Link
+                    href={route("patients.create")}
+                    className="btn btn-primary"
+                >
                     Add Patient
                 </Link>
             </div>
@@ -32,7 +35,7 @@ const PatientsPage = ({ patients, filters }) => {
                     name="search"
                     defaultValue={search}
                     placeholder="Search name..."
-                    className="input-contrast"
+                    className="input-contrast max-w-96"
                 />
                 <DataTable columns={columns} data={patients} />
             </div>

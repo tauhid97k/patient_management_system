@@ -7,7 +7,7 @@ const AppLayout = ({ children }) => {
             <Sidebar />
             <div className="w-full h-screen overflow-y-auto">
                 <Header />
-                <main className="p-5">{children}</main>
+                <main className="px-5 pt-5 pb-8">{children}</main>
             </div>
         </div>
     );

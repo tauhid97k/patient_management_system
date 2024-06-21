@@ -26,7 +26,7 @@ class PatientController extends Controller
      */
     public function create()
     {
-        //
+        return inertia('Dashboard/Patients/Add');
     }
 
     /**
@@ -34,7 +34,9 @@ class PatientController extends Controller
      */
     public function store(StorePatientRequest $request)
     {
-        //
+        Patient::create($request->validated());
+
+        return redirect(route('patients.index'))->with('message', 'Patient added');
     }
 
     /**

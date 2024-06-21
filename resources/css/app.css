@@ -49,7 +49,7 @@ body {
     @apply w-full rounded-md focus:ring-0 border-zinc-200 dark:border-zinc-700 dark:focus:border-zinc-500 bg-transparent dark:bg-zinc-900;
 }
 .input-contrast {
-    @apply max-w-96 rounded-md focus:ring-0 border-zinc-200 dark:border-zinc-700 dark:focus:border-zinc-500 bg-white dark:bg-zinc-800;
+    @apply w-full rounded-md focus:ring-0 border-zinc-200 dark:border-zinc-700 dark:focus:border-zinc-500 bg-white dark:bg-zinc-800;
 }
 /* Autofill selection color on dark */
 .dark .input,
