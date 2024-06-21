@@ -1,4 +1,5 @@
 import { Head, Link, useForm } from "@inertiajs/react";
+import { toast } from "sonner";
 
 const PatientCreatePage = () => {
     const { setData, processing, errors, post } = useForm({
@@ -14,7 +15,9 @@ const PatientCreatePage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post(route("patients.store"));
+        post(route("patients.store"), {
+            onSuccess: () => toast.success("Patient added"),
+        });
     };
 
     return (

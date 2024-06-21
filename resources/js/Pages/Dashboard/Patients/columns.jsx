@@ -8,6 +8,7 @@ import { EllipsisVertical, Eye, Pencil, Trash } from "lucide-react";
 import Modal from "@/Components/Modal";
 import { useState } from "react";
 import { useForm } from "@inertiajs/react";
+import { toast } from "sonner";
 
 export const columns = [
     {
@@ -59,7 +60,10 @@ export const columns = [
                 e.preventDefault();
                 destroy(route("patients.destroy", { id }), {
                     preserveScroll: true,
-                    onSuccess: () => closeModal(),
+                    onSuccess: () => {
+                        closeModal();
+                        toast.success("Patient deleted");
+                    },
                 });
             };
 

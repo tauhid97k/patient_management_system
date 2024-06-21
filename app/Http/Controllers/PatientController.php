@@ -36,7 +36,7 @@ class PatientController extends Controller
     {
         Patient::create($request->validated());
 
-        return redirect(route('patients.index'))->with('message', 'Patient added');
+        return redirect(route('patients.index'));
     }
 
     /**
@@ -70,6 +70,6 @@ class PatientController extends Controller
     {
         $patient->delete();
 
-        return redirect()->back()->with('message', 'Patient deleted');
+        return redirect()->back();
     }
 }
