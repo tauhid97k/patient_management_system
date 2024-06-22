@@ -1,14 +1,18 @@
 import { Link } from "@inertiajs/react";
+import { rolesColumns } from "./rolesColumns";
+import { DataTable } from "@/Components/Table";
 
-const RolePermissionsPage = ({ roles, permissions }) => {
+const RolePermissionsPage = ({ roles }) => {
     return (
         <>
             <div className="flex items-center justify-between mb-5">
-                <h2 className="text-2xl font-medium">Role Permissions</h2>
+                <h2 className="text-2xl font-medium">Roles</h2>
                 <Link href="#" className="btn btn-primary">
                     Create Role
                 </Link>
             </div>
+
+            <DataTable columns={rolesColumns} data={roles} />
         </>
     );
 };

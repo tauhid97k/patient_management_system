@@ -40,6 +40,12 @@ body {
 .card {
     @apply p-5 rounded-lg bg-white dark:bg-zinc-800 shadow-sm;
 }
+.card-contrast {
+    @apply rounded-md bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700;
+}
+.card-header {
+    @apply h-14 flex items-center capitalize px-6 font-medium whitespace-nowrap tracking-wide text-lg text-zinc-700 dark:text-zinc-200 bg-zinc-200/50 dark:bg-zinc-700/50 border-b border-zinc-200 dark:border-zinc-700;
+}
 
 /* Form */
 .input-container {

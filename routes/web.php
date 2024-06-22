@@ -23,7 +23,9 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     // Role Permissions
-    Route::get('/role-permissions', [RolePermissionController::class, 'rolePermissions'])->name('rolePermissions');
+    Route::get('/role-permissions', [RolePermissionController::class, 'index'])->name('rolePermissions.index');
+    Route::get('/role-permissions/{role}/permissions', [RolePermissionController::class, 'show'])->name('rolePermissions.show');
+    Route::put('/role-permissions/{role}/permissions', [RolePermissionController::class, 'update'])->name('rolePermissions.update');
 
     // Patient
     Route::resource('/patients', PatientController::class);
