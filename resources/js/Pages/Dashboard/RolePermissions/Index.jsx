@@ -1,16 +1,16 @@
 import { Link } from "@inertiajs/react";
 
-const UsersPage = () => {
+const RolePermissionsPage = ({ roles, permissions }) => {
     return (
         <>
             <div className="flex items-center justify-between mb-5">
-                <h2 className="text-2xl font-medium">Users</h2>
+                <h2 className="text-2xl font-medium">Role Permissions</h2>
                 <Link href="#" className="btn btn-primary">
-                    Add User
+                    Create Role
                 </Link>
             </div>
         </>
     );
 };
 
-export default UsersPage;
+export default RolePermissionsPage;

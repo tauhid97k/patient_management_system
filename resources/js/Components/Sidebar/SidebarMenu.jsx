@@ -28,7 +28,8 @@ const SidebarMenu = () => {
                 text="Patients"
             />
             <SidebarMenuItem
-                href="#"
+                href={route("rolePermissions")}
+                active={route().current("rolePermissions")}
                 icon={<ShieldCheck className="size-[22px]" />}
                 text="Role Permissions"
             />
