@@ -2,7 +2,7 @@ import { Head, useForm } from "@inertiajs/react";
 import { toast } from "sonner";
 
 const PatientCreatePage = () => {
-    const { setData, processing, errors, post, data } = useForm({
+    const { setData, processing, errors, post } = useForm({
         name: "",
         age: "",
         gender: "",
@@ -12,8 +12,6 @@ const PatientCreatePage = () => {
         address: "",
         note: "",
     });
-
-    console.log(data);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -31,10 +29,10 @@ const PatientCreatePage = () => {
 
             <form onSubmit={handleSubmit} autoComplete="off">
                 <fieldset
-                    className="grid grid-cols-1 md:grid-cols-2 gap-4 disabled:opacity-70"
+                    className="grid grid-cols-1 md:grid-cols-2 gap-x-5 disabled:opacity-70"
                     disabled={processing}
                 >
-                    <div className="flex flex-col gap-y-1 mb-3">
+                    <div className="input-container">
                         <label htmlFor="name" className="input-label">
                             Name
                         </label>
@@ -49,7 +47,7 @@ const PatientCreatePage = () => {
                             <p className="input-error">{errors.name}</p>
                         )}
                     </div>
-                    <div className="flex flex-col gap-y-1 mb-3">
+                    <div className="input-container">
                         <label htmlFor="age" className="input-label">
                             Age
                         </label>
@@ -64,7 +62,7 @@ const PatientCreatePage = () => {
                             <p className="input-error">{errors.age}</p>
                         )}
                     </div>
-                    <div className="flex flex-col gap-y-1 mb-3">
+                    <div className="input-container">
                         <label htmlFor="gender" className="input-label">
                             Gender
                         </label>
@@ -73,8 +71,9 @@ const PatientCreatePage = () => {
                             id="gender"
                             name="gender"
                             className="input-contrast"
+                            defaultValue=""
                         >
-                            <option value="" disabled selected hidden>
+                            <option value="" disabled>
                                 Select gender
                             </option>
                             <option value="male">Male</option>
@@ -85,7 +84,7 @@ const PatientCreatePage = () => {
                             <p className="input-error">{errors.gender}</p>
                         )}
                     </div>
-                    <div className="flex flex-col gap-y-1 mb-3">
+                    <div className="input-container">
                         <label htmlFor="blood_group" className="input-label">
                             Blood Group
                         </label>
@@ -96,8 +95,9 @@ const PatientCreatePage = () => {
                             id="blood_group"
                             name="blood_group"
                             className="input-contrast"
+                            defaultValue=""
                         >
-                            <option value="" disabled selected hidden>
+                            <option value="" disabled>
                                 Select blood group
                             </option>
                             <option value="a_positive">A Positive</option>
@@ -113,7 +113,7 @@ const PatientCreatePage = () => {
                             <p className="input-error">{errors.blood_group}</p>
                         )}
                     </div>
-                    <div className="flex flex-col gap-y-1 mb-3">
+                    <div className="input-container">
                         <label htmlFor="marital_status" className="input-label">
                             Marital Status
                         </label>
@@ -124,12 +124,13 @@ const PatientCreatePage = () => {
                             id="marital_status"
                             name="marital_status"
                             className="input-contrast"
+                            defaultValue=""
                         >
-                            <option value="" disabled selected hidden>
+                            <option value="" disabled>
                                 Select marital status
                             </option>
-                            <option value="unmarried">Unmarried</option>
                             <option value="married">Married</option>
+                            <option value="unmarried">Unmarried</option>
                         </select>
                         {errors.marital_status && (
                             <p className="input-error">
@@ -137,7 +138,7 @@ const PatientCreatePage = () => {
                             </p>
                         )}
                     </div>
-                    <div className="flex flex-col gap-y-1 mb-3">
+                    <div className="input-container">
                         <label htmlFor="phone" className="input-label">
                             Phone
                         </label>
@@ -152,7 +153,7 @@ const PatientCreatePage = () => {
                             <p className="input-error">{errors.phone}</p>
                         )}
                     </div>
-                    <div className="flex flex-col gap-y-1 mb-3">
+                    <div className="input-container">
                         <label htmlFor="address" className="input-label">
                             Address
                         </label>
@@ -167,7 +168,7 @@ const PatientCreatePage = () => {
                             <p className="input-error">{errors.address}</p>
                         )}
                     </div>
-                    <div className="flex flex-col gap-y-1 mb-3">
+                    <div className="input-container">
                         <label
                             htmlFor="note"
                             className="flex gap-1 items-center input-label"

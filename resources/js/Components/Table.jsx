@@ -74,7 +74,7 @@ export function DataTable({ columns, data }) {
                     </tbody>
                 </table>
             </div>
-            <div className="py-4 flex items-center justify-center gap-2 border-t border-zinc-200 dark:border-zinc-700">
+            <div className="py-4 flex items-center flex-wrap justify-center gap-2 border-t border-zinc-200 dark:border-zinc-700">
                 {data.links.map((link) =>
                     link.url ? (
                         <Link

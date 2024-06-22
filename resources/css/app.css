@@ -42,6 +42,9 @@ body {
 }
 
 /* Form */
+.input-container {
+    @apply flex flex-col gap-y-1 mb-3 col-span-2 lg:col-span-1;
+}
 .input-label {
     @apply font-medium tracking-wide;
 }
