@@ -1,7 +1,7 @@
-import { Head, useForm } from "@inertiajs/react";
+import { Head, Link, useForm } from "@inertiajs/react";
 import { toast } from "sonner";
 
-const PatientCreatePage = () => {
+const AddPatientPage = () => {
     const { setData, processing, errors, post } = useForm({
         name: "",
         age: "",
@@ -25,6 +25,9 @@ const PatientCreatePage = () => {
             <Head title="Add Patient" />
             <div className="flex items-center justify-between gap-4 mb-5">
                 <h2 className="text-2xl font-medium">Add Patient</h2>
+                <Link href={route("patients.index")} className="btn btn-muted">
+                    Go back
+                </Link>
             </div>
 
             <form onSubmit={handleSubmit} autoComplete="off">
@@ -186,7 +189,7 @@ const PatientCreatePage = () => {
                             rows={2}
                         ></textarea>
                     </div>
-                    <div className="col-span-2">
+                    <div className="col-span-2 mt-2">
                         <button
                             type="submit"
                             className="btn btn-primary ms-auto"
@@ -200,4 +203,4 @@ const PatientCreatePage = () => {
     );
 };
 
-export default PatientCreatePage;
+export default AddPatientPage;

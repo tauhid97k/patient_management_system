@@ -32,6 +32,11 @@ const LoginPage = () => {
                         {errors.email && (
                             <span className="input-error">{errors.email}</span>
                         )}
+
+                        {/* If user has no role then show this error */}
+                        {errors.role && (
+                            <span className="input-error">{errors.role}</span>
+                        )}
                     </div>
                     <div className="flex flex-col gap-y-1 mb-3">
                         <label htmlFor="password" className="input-label">

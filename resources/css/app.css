@@ -16,7 +16,7 @@ body {
 
 /* Buttons */
 .btn {
-    @apply h-10 px-3.5 flex items-center justify-center gap-x-2.5 text-center font-medium rounded-md text-lg border border-transparent text-white dark:text-zinc-300 disabled:opacity-70 disabled:pointer-events-none transition-colors;
+    @apply h-10 px-3.5 flex items-center justify-center gap-x-1 text-center font-medium rounded-md text-lg border border-transparent text-white dark:text-zinc-300 disabled:opacity-70 disabled:pointer-events-none transition-colors;
 }
 .btn-primary {
     @apply bg-blue-600 hover:bg-blue-700 dark:bg-zinc-700 dark:hover:bg-zinc-600/80;
@@ -26,6 +26,9 @@ body {
 }
 .btn-danger {
     @apply bg-red-600 hover:bg-red-700;
+}
+.btn-muted {
+    @apply text-zinc-700 bg-zinc-200 hover:bg-zinc-300 dark:bg-zinc-700/50 dark:hover:bg-zinc-700/70;
 }
 .btn-icon {
     @apply size-10 flex items-center justify-center rounded-md text-zinc-600 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-700;
@@ -67,6 +70,9 @@ body {
 }
 .input-checkbox {
     @apply size-[18px] focus:ring-0 focus:ring-offset-0 border-zinc-200 rounded text-blue-600 focus:ring-blue-500 dark:bg-zinc-900 dark:border-zinc-700 dark:checked:bg-zinc-600 dark:checked:border-zinc-600;
+}
+.input-checkbox-contrast {
+    @apply size-[18px] focus:ring-0 focus:ring-offset-0 border-zinc-200 rounded text-blue-600 focus:ring-blue-500 dark:bg-zinc-800 dark:border-zinc-700 dark:checked:bg-zinc-600 dark:checked:border-zinc-600;
 }
 .input-error {
     @apply text-red-400 text-[15px];

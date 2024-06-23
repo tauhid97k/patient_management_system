@@ -7,7 +7,10 @@ const RolePermissionsPage = ({ roles }) => {
         <>
             <div className="flex items-center justify-between mb-5">
                 <h2 className="text-2xl font-medium">Roles</h2>
-                <Link href="#" className="btn btn-primary">
+                <Link
+                    href={route("rolePermissions.create")}
+                    className="btn btn-primary"
+                >
                     Create Role
                 </Link>
             </div>

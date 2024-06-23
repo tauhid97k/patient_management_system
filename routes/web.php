@@ -23,11 +23,15 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     // Role Permissions
+    Route::get('/role-permissions/create', [RolePermissionController::class, 'create'])->name('rolePermissions.create');
+    Route::post('/role-permissions', [RolePermissionController::class, 'store'])->name('rolePermissions.store');
     Route::get('/role-permissions', [RolePermissionController::class, 'index'])->name('rolePermissions.index');
     Route::get('/role-permissions/{role}/permissions', [RolePermissionController::class, 'show'])->name('rolePermissions.show');
     Route::put('/role-permissions/{role}/permissions', [RolePermissionController::class, 'update'])->name('rolePermissions.update');
+    Route::delete('/role-permissions/{role}', [RolePermissionController::class, 'destroy'])->name('rolePermissions.destroy');
 
-    // Patient
+
+    // Patients
     Route::resource('/patients', PatientController::class);
     // Users
     Route::resource('/users', UserController::class);
