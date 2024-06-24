@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\User\StoreUserRequest;
+use App\Http\Requests\User\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
@@ -66,17 +67,33 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        // Get roles
+        $roles = Role::whereNot('name', 'admin')->select('id', 'name')->get();
+
+        // Get user with role
+        $user = User::with('roles')->findOrFail($user->id);
+        $user->role = $user->roles->isEmpty() ? null : $user->roles->first()->name;
+        unset($user->roles);
+
+        return inertia('Dashboard/Users/Edit', ['user' => $user, 'roles' => $roles]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        $user = User::findOrFail($user->id);
+        $user->update($request->validated());
+
+        // Assign/Update role
+        if ($request->filled('role')) {
+            $user->syncRoles([$request->input('role')]);
+        }
+
+        return redirect()->route('users.index');
     }
 
     /**

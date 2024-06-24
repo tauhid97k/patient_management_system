@@ -7,7 +7,7 @@ import {
 import { EllipsisVertical, Eye, Pencil, Trash } from "lucide-react";
 import Modal from "@/Components/Modal";
 import { useState } from "react";
-import { useForm } from "@inertiajs/react";
+import { Link, useForm } from "@inertiajs/react";
 import { toast } from "sonner";
 
 export const columns = [
@@ -42,7 +42,7 @@ export const columns = [
     {
         header: "Action",
         cell: ({ row }) => {
-            const { id, role } = row.original;
+            const { id } = row.original;
             const [confirmUserDelete, setConfirmUserDelete] = useState(false);
             const { processing, delete: destroy } = useForm();
 
@@ -72,22 +72,19 @@ export const columns = [
                                 <Eye className="icon" />
                                 <span>View</span>
                             </DropdownItem>
-                            {role !== "admin" && (
-                                <>
-                                    <DropdownItem>
-                                        <Pencil className="icon" />
-                                        <span>Edit</span>
-                                    </DropdownItem>
-                                    <DropdownItem
-                                        onClick={() =>
-                                            setConfirmUserDelete(true)
-                                        }
-                                    >
-                                        <Trash className="icon" />
-                                        <span>Delete</span>
-                                    </DropdownItem>
-                                </>
-                            )}
+                            <DropdownItem
+                                as={Link}
+                                href={route("users.edit", { id })}
+                            >
+                                <Pencil className="icon" />
+                                <span>Edit</span>
+                            </DropdownItem>
+                            <DropdownItem
+                                onClick={() => setConfirmUserDelete(true)}
+                            >
+                                <Trash className="icon" />
+                                <span>Delete</span>
+                            </DropdownItem>
                         </DropdownItems>
                     </Dropdown>
 
