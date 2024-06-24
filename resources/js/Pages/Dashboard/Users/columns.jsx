@@ -68,7 +68,10 @@ export const columns = [
                             <EllipsisVertical />
                         </DropdownTrigger>
                         <DropdownItems className="border dark:border-zinc-700 z-10">
-                            <DropdownItem>
+                            <DropdownItem
+                                as={Link}
+                                href={route("users.show", { id })}
+                            >
                                 <Eye className="icon" />
                                 <span>View</span>
                             </DropdownItem>

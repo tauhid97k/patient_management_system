@@ -59,9 +59,14 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(User $user)
     {
-        //
+        // Get user with role
+        $user = User::with('roles')->findOrFail($user->id);
+        $user->role = $user->roles->isEmpty() ? null : $user->roles->first()->name;
+        unset($user->roles);
+
+        return inertia('Dashboard/Users/Show', ['user' => $user]);
     }
 
     /**

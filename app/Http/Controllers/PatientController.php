@@ -44,7 +44,9 @@ class PatientController extends Controller
      */
     public function show(Patient $patient)
     {
-        //
+        $patient = Patient::findOrFail($patient->id);
+        $records = $patient->records()->latest()->paginate();
+        return inertia('Dashboard/Patients/Show', ['patient' => $patient, 'records' => $records]);
     }
 
     /**
