@@ -7,7 +7,7 @@ import {
 import { EllipsisVertical, Eye, Pencil, Trash } from "lucide-react";
 import Modal from "@/Components/Modal";
 import { useState } from "react";
-import { useForm } from "@inertiajs/react";
+import { Link, useForm } from "@inertiajs/react";
 import { toast } from "sonner";
 
 export const columns = [
@@ -78,7 +78,10 @@ export const columns = [
                                 <Eye className="icon" />
                                 <span>View</span>
                             </DropdownItem>
-                            <DropdownItem>
+                            <DropdownItem
+                                as={Link}
+                                href={route("patients.edit", { id })}
+                            >
                                 <Pencil className="icon" />
                                 <span>Edit</span>
                             </DropdownItem>

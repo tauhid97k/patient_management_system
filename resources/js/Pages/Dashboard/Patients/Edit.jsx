@@ -1,30 +1,30 @@
 import { Head, Link, useForm } from "@inertiajs/react";
 import { toast } from "sonner";
 
-const AddPatientPage = () => {
-    const { setData, processing, errors, post } = useForm({
-        name: "",
-        age: "",
-        gender: "",
-        blood_group: "",
-        marital_status: "",
-        phone: "",
-        address: "",
-        note: "",
+const EditPatientPage = ({ patient }) => {
+    const { setData, processing, errors, put } = useForm({
+        name: patient.name,
+        age: patient.age,
+        gender: patient.gender,
+        blood_group: patient.blood_group,
+        marital_status: patient.marital_status,
+        phone: patient.phone,
+        address: patient.address,
+        note: patient.note,
     });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post(route("patients.store"), {
-            onSuccess: () => toast.success("Patient added"),
+        put(route("patients.update", { patient: patient.id }), {
+            onSuccess: () => toast.success("Patient updated"),
         });
     };
 
     return (
         <>
-            <Head title="Add Patient" />
+            <Head title="Edit Patient" />
             <div className="flex items-center justify-between gap-4 mb-5">
-                <h2 className="text-2xl font-medium">Add Patient</h2>
+                <h2 className="text-2xl font-medium">Edit Patient</h2>
                 <Link href={route("patients.index")} className="btn btn-muted">
                     Go back
                 </Link>
@@ -45,6 +45,7 @@ const AddPatientPage = () => {
                             id="name"
                             name="name"
                             className="input-contrast"
+                            defaultValue={patient.name}
                         />
                         {errors.name && (
                             <p className="input-error">{errors.name}</p>
@@ -60,6 +61,7 @@ const AddPatientPage = () => {
                             id="age"
                             name="age"
                             className="input-contrast"
+                            defaultValue={patient.age}
                         />
                         {errors.age && (
                             <p className="input-error">{errors.age}</p>
@@ -74,6 +76,7 @@ const AddPatientPage = () => {
                             id="gender"
                             name="gender"
                             className="input-contrast"
+                            defaultValue={patient.gender}
                         >
                             <option value="" disabled>
                                 Select gender
@@ -97,6 +100,7 @@ const AddPatientPage = () => {
                             id="blood_group"
                             name="blood_group"
                             className="input-contrast"
+                            defaultValue={patient.blood_group}
                         >
                             <option value="" disabled>
                                 Select blood group
@@ -125,6 +129,7 @@ const AddPatientPage = () => {
                             id="marital_status"
                             name="marital_status"
                             className="input-contrast"
+                            defaultValue={patient.marital_status}
                         >
                             <option value="" disabled>
                                 Select marital status
@@ -148,6 +153,7 @@ const AddPatientPage = () => {
                             id="phone"
                             name="phone"
                             className="input-contrast"
+                            defaultValue={patient.phone}
                         />
                         {errors.phone && (
                             <p className="input-error">{errors.phone}</p>
@@ -162,6 +168,7 @@ const AddPatientPage = () => {
                             id="address"
                             name="address"
                             className="input-contrast"
+                            defaultValue={patient.address}
                             rows={2}
                         ></textarea>
                         {errors.address && (
@@ -183,6 +190,7 @@ const AddPatientPage = () => {
                             id="note"
                             name="note"
                             className="input-contrast"
+                            defaultValue={patient.note}
                             rows={2}
                         ></textarea>
                     </div>
@@ -191,7 +199,7 @@ const AddPatientPage = () => {
                             type="submit"
                             className="btn btn-primary ms-auto"
                         >
-                            Add Patient
+                            Update Patient
                         </button>
                     </div>
                 </fieldset>
@@ -200,4 +208,4 @@ const AddPatientPage = () => {
     );
 };
 
-export default AddPatientPage;
+export default EditPatientPage;

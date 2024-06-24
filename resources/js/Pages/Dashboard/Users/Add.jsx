@@ -87,7 +87,6 @@ const AddUserPage = ({ roles }) => {
                             id="role"
                             name="role"
                             className="input-contrast capitalize"
-                            defaultValue=""
                         >
                             <option value="" disabled>
                                 Select role

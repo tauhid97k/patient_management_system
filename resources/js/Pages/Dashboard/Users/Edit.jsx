@@ -67,7 +67,10 @@ const EditUserPage = ({ user, roles }) => {
                     </div>
                     <div className="input-container">
                         <label htmlFor="password" className="input-label">
-                            Password
+                            <span>Password </span>
+                            <span className="text-sm text-zinc-500">
+                                (Optional)
+                            </span>
                         </label>
                         <input
                             onChange={(e) =>
