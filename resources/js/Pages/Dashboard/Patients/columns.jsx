@@ -7,7 +7,7 @@ import {
 import { EllipsisVertical, Eye, Pencil, Trash } from "lucide-react";
 import Modal from "@/Components/Modal";
 import { useState } from "react";
-import { Link, useForm } from "@inertiajs/react";
+import { Link, useForm, usePage } from "@inertiajs/react";
 import { toast } from "sonner";
 
 export const columns = [
@@ -50,6 +50,8 @@ export const columns = [
             const { id } = row.original;
             const [confirmPatientDelete, setConfirmPatientDelete] =
                 useState(false);
+
+            const { can } = usePage().props;
             const { processing, delete: destroy } = useForm();
 
             const closeModal = () => {
@@ -67,33 +69,43 @@ export const columns = [
                 });
             };
 
-            return (
+            return can?.show_patient ||
+                can?.edit_patient ||
+                can?.delete_patient ? (
                 <>
                     <Dropdown>
                         <DropdownTrigger className="btn-icon">
                             <EllipsisVertical />
                         </DropdownTrigger>
                         <DropdownItems className="border dark:border-zinc-700 z-10">
-                            <DropdownItem
-                                as={Link}
-                                href={route("patients.show", { id })}
-                            >
-                                <Eye className="icon" />
-                                <span>View</span>
-                            </DropdownItem>
-                            <DropdownItem
-                                as={Link}
-                                href={route("patients.edit", { id })}
-                            >
-                                <Pencil className="icon" />
-                                <span>Edit</span>
-                            </DropdownItem>
-                            <DropdownItem
-                                onClick={() => setConfirmPatientDelete(true)}
-                            >
-                                <Trash className="icon" />
-                                <span>Delete</span>
-                            </DropdownItem>
+                            {can?.show_patient && (
+                                <DropdownItem
+                                    as={Link}
+                                    href={route("patients.show", { id })}
+                                >
+                                    <Eye className="icon" />
+                                    <span>View</span>
+                                </DropdownItem>
+                            )}
+                            {can?.edit_patient && (
+                                <DropdownItem
+                                    as={Link}
+                                    href={route("patients.edit", { id })}
+                                >
+                                    <Pencil className="icon" />
+                                    <span>Edit</span>
+                                </DropdownItem>
+                            )}
+                            {can?.delete_patient && (
+                                <DropdownItem
+                                    onClick={() =>
+                                        setConfirmPatientDelete(true)
+                                    }
+                                >
+                                    <Trash className="icon" />
+                                    <span>Delete</span>
+                                </DropdownItem>
+                            )}
                         </DropdownItems>
                     </Dropdown>
 
@@ -139,7 +151,7 @@ export const columns = [
                         </section>
                     </Modal>
                 </>
-            );
+            ) : null;
         },
     },
 ];

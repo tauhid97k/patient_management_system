@@ -21,10 +21,12 @@ class RolesAndPermissionsSeeder extends Seeder
         // Create permissions
         $permissions = [
             ['name' => 'view_users', 'group' => 'users'],
+            ['name' => 'show_user', 'group' => 'users'],
             ['name' => 'create_user', 'group' => 'users'],
             ['name' => 'edit_user', 'group' => 'users'],
             ['name' => 'delete_user', 'group' => 'users'],
             ['name' => 'view_patients', 'group' => 'patients'],
+            ['name' => 'show_patient', 'group' => 'patients'],
             ['name' => 'create_patient', 'group' => 'patients'],
             ['name' => 'edit_patient', 'group' => 'patients'],
             ['name' => 'delete_patient', 'group' => 'patients'],

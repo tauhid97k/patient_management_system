@@ -1,5 +1,5 @@
 import Modal from "@/Components/Modal";
-import { Link, useForm } from "@inertiajs/react";
+import { Link, useForm, usePage } from "@inertiajs/react";
 import { Shield, Trash } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -24,8 +24,10 @@ export const rolesColumns = [
     {
         header: "Action",
         cell: ({ row }) => {
-            const { id, name } = row.original;
+            const { id } = row.original;
             const [confirmRoleDelete, setConfirmRoleDelete] = useState(false);
+
+            const { can } = usePage().props;
             const { processing, delete: destroy } = useForm();
 
             const closeModal = () => {
@@ -43,23 +45,28 @@ export const rolesColumns = [
                 });
             };
 
-            return (
+            return can?.edit_role_permissions ||
+                can?.delete_role_permissions ? (
                 <>
                     <div className="flex gap-2 items-center">
-                        <Link
-                            href={route("rolePermissions.show", { id })}
-                            className="btn btn-secondary w-fit"
-                        >
-                            <Shield className="icon" />
-                            <span>Permissions</span>
-                        </Link>
-                        <button
-                            onClick={() => setConfirmRoleDelete(true)}
-                            className="btn btn-danger"
-                        >
-                            <Trash className="icon" />
-                            <span>Delete</span>
-                        </button>
+                        {can?.edit_role_permissions && (
+                            <Link
+                                href={route("rolePermissions.show", { id })}
+                                className="btn btn-secondary w-fit"
+                            >
+                                <Shield className="icon" />
+                                <span>Permissions</span>
+                            </Link>
+                        )}
+                        {can?.delete_role_permissions && (
+                            <button
+                                onClick={() => setConfirmRoleDelete(true)}
+                                className="btn btn-danger"
+                            >
+                                <Trash className="icon" />
+                                <span>Delete</span>
+                            </button>
+                        )}
                     </div>
 
                     <Modal show={confirmRoleDelete} onClose={closeModal}>
@@ -103,7 +110,7 @@ export const rolesColumns = [
                         </section>
                     </Modal>
                 </>
-            );
+            ) : null;
         },
     },
 ];

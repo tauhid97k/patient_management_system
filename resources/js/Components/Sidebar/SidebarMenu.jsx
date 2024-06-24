@@ -1,3 +1,4 @@
+import { usePage } from "@inertiajs/react";
 import SidebarMenuItem from "./SidebarMenuItem";
 import {
     ClipboardPlus,
@@ -7,6 +8,8 @@ import {
 } from "lucide-react";
 
 const SidebarMenu = () => {
+    const { can } = usePage().props;
+
     return (
         <nav className="grow flex flex-col gap-1.5 overflow-y-auto p-4">
             <SidebarMenuItem

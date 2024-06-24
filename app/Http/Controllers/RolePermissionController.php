@@ -11,14 +11,29 @@ class RolePermissionController extends Controller
     // Roles
     public function index(Request $request)
     {
+        // View Access
+        if ($request->user()->cannot('view_role_permissions')) {
+            abort(403);
+        }
+
         $roles = Role::whereNot('name', 'admin')->latest()->paginate();
 
-        return inertia('Dashboard/RolePermissions/Index', ['roles' => $roles]);
+        return inertia('Dashboard/RolePermissions/Index', ['roles' => $roles, 'can' => [
+            'view_role_permissions' => $request->user()->can('view_role_permissions'),
+            'create_role_permissions' => $request->user()->can('create_role_permissions'),
+            'edit_role_permissions' => $request->user()->can('edit_role_permissions'),
+            'delete_role_permissions' => $request->user()->can('delete_role_permissions')
+        ]]);
     }
 
     // Role permissions creation page
-    public function create()
+    public function create(Request $request)
     {
+        // Create Access
+        if ($request->user()->cannot('create_role_permissions')) {
+            abort(403);
+        }
+
         // Get all permissions based on group
         $permissions = Permission::all()->groupBy('group');
 
@@ -28,6 +43,11 @@ class RolePermissionController extends Controller
     // Create role and permissions
     public function store(Request $request)
     {
+        // Create Access
+        if ($request->user()->cannot('create_role_permissions')) {
+            abort(403);
+        }
+
         // Validate request
         $request->validate([
             'name' => 'required|string|unique:roles,name',
@@ -45,8 +65,13 @@ class RolePermissionController extends Controller
     }
 
     // Show role permissions
-    public function show($role)
+    public function show(Request $request, $role)
     {
+        // Show Access
+        if ($request->user()->cannot('edit_role_permissions')) {
+            abort(403);
+        }
+
         // Get the role
         $role = Role::findById($role);
 
@@ -70,6 +95,11 @@ class RolePermissionController extends Controller
     // Update role permissions
     public function update(Request $request, $role)
     {
+        // Edit Access
+        if ($request->user()->cannot('edit_role_permissions')) {
+            abort(403);
+        }
+
         // Validate request
         $request->validate([
             'permissions' => 'required|array|min:1',
@@ -98,6 +128,11 @@ class RolePermissionController extends Controller
     // Delete role
     public function destroy(Request $request, $role)
     {
+        // Show Access
+        if ($request->user()->cannot('delete_role_permissions')) {
+            abort(403);
+        }
+
         // Get the role
         $role = Role::findById($role);
 

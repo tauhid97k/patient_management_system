@@ -7,7 +7,7 @@ import {
 import { EllipsisVertical, Eye, Pencil, Trash } from "lucide-react";
 import Modal from "@/Components/Modal";
 import { useState } from "react";
-import { Link, useForm } from "@inertiajs/react";
+import { Link, useForm, usePage } from "@inertiajs/react";
 import { toast } from "sonner";
 
 export const columns = [
@@ -44,6 +44,8 @@ export const columns = [
         cell: ({ row }) => {
             const { id } = row.original;
             const [confirmUserDelete, setConfirmUserDelete] = useState(false);
+
+            const { can } = usePage().props;
             const { processing, delete: destroy } = useForm();
 
             const closeModal = () => {
@@ -61,33 +63,40 @@ export const columns = [
                 });
             };
 
-            return (
+            return can?.show_user || can?.edit_user || can?.delete_user ? (
                 <>
                     <Dropdown>
                         <DropdownTrigger className="btn-icon">
                             <EllipsisVertical />
                         </DropdownTrigger>
+
                         <DropdownItems className="border dark:border-zinc-700 z-10">
-                            <DropdownItem
-                                as={Link}
-                                href={route("users.show", { id })}
-                            >
-                                <Eye className="icon" />
-                                <span>View</span>
-                            </DropdownItem>
-                            <DropdownItem
-                                as={Link}
-                                href={route("users.edit", { id })}
-                            >
-                                <Pencil className="icon" />
-                                <span>Edit</span>
-                            </DropdownItem>
-                            <DropdownItem
-                                onClick={() => setConfirmUserDelete(true)}
-                            >
-                                <Trash className="icon" />
-                                <span>Delete</span>
-                            </DropdownItem>
+                            {can?.show_user && (
+                                <DropdownItem
+                                    as={Link}
+                                    href={route("users.show", { id })}
+                                >
+                                    <Eye className="icon" />
+                                    <span>View</span>
+                                </DropdownItem>
+                            )}
+                            {can?.edit_user && (
+                                <DropdownItem
+                                    as={Link}
+                                    href={route("users.edit", { id })}
+                                >
+                                    <Pencil className="icon" />
+                                    <span>Edit</span>
+                                </DropdownItem>
+                            )}
+                            {can?.delete_user && (
+                                <DropdownItem
+                                    onClick={() => setConfirmUserDelete(true)}
+                                >
+                                    <Trash className="icon" />
+                                    <span>Delete</span>
+                                </DropdownItem>
+                            )}
                         </DropdownItems>
                     </Dropdown>
 
@@ -132,7 +141,7 @@ export const columns = [
                         </section>
                     </Modal>
                 </>
-            );
+            ) : null;
         },
     },
 ];

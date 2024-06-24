@@ -15,6 +15,11 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        // View Access
+        if ($request->user()->cannot('view_users')) {
+            abort(403);
+        }
+
         // Get users with roles and search filter
         $users = User::query()->when($request->input('search'), function ($query, $search) {
             $query->where('name', 'like', "%{$search}%");
@@ -29,14 +34,25 @@ class UserController extends Controller
             return $user;
         });
 
-        return inertia('Dashboard/Users/Index', ['users' => $users, 'filters' => $request->only('search')]);
+        return inertia('Dashboard/Users/Index', ['users' => $users, 'filters' => $request->only('search'), 'can' => [
+            'view_users' => $request->user()->can('view_users'),
+            'show_user' => $request->user()->can('show_user'),
+            'create_user' => $request->user()->can('create_user'),
+            'edit_user' => $request->user()->can('edit_user'),
+            'delete_user' => $request->user()->can('delete_user')
+        ]]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
+        // Create Access
+        if ($request->user()->cannot('create_user')) {
+            abort(403);
+        }
+
         // Get roles
         $roles = Role::whereNot('name', 'admin')->select('id', 'name')->get();
 
@@ -48,6 +64,12 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
+
+        // Create Access
+        if ($request->user()->cannot('create_user')) {
+            abort(403);
+        }
+
         $user = User::create($request->validated());
 
         // Assign role
@@ -59,8 +81,13 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show(Request $request, User $user)
     {
+        // Show Access
+        if ($request->user()->cannot('show_user')) {
+            abort(403);
+        }
+
         // Get user with role
         $user = User::with('roles')->findOrFail($user->id);
         $user->role = $user->roles->isEmpty() ? null : $user->roles->first()->name;
@@ -72,8 +99,13 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
+    public function edit(Request $request, User $user)
     {
+        // Edit Access
+        if ($request->user()->cannot('edit_user')) {
+            abort(403);
+        }
+
         // Get roles
         $roles = Role::whereNot('name', 'admin')->select('id', 'name')->get();
 
@@ -90,6 +122,11 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
+        // Edit Access
+        if ($request->user()->cannot('edit_user')) {
+            abort(403);
+        }
+
         $user = User::findOrFail($user->id);
         $user->update($request->validated());
 
@@ -104,8 +141,13 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy(Request $request, User $user)
     {
+        // Delete Access
+        if ($request->user()->cannot('delete_user')) {
+            abort(403);
+        }
+
         $user->delete();
 
         return redirect()->back();

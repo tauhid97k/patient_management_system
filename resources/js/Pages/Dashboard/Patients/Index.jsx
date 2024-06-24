@@ -1,10 +1,11 @@
 import { DataTable } from "@/Components/Table";
-import { Link, router } from "@inertiajs/react";
+import { Link, router, usePage } from "@inertiajs/react";
 import { useState } from "react";
 import { columns } from "./columns";
 
 const PatientsPage = ({ patients, filters }) => {
     const [search] = useState(filters.search);
+    const { can } = usePage().props;
 
     // Search API (No debounce added for now)
     const handleSearch = (e) => {
@@ -20,12 +21,14 @@ const PatientsPage = ({ patients, filters }) => {
         <>
             <div className="flex items-center justify-between mb-5">
                 <h2 className="text-2xl font-medium">Patients</h2>
-                <Link
-                    href={route("patients.create")}
-                    className="btn btn-primary"
-                >
-                    Add Patient
-                </Link>
+                {can?.create_patient && (
+                    <Link
+                        href={route("patients.create")}
+                        className="btn btn-primary"
+                    >
+                        Add Patient
+                    </Link>
+                )}
             </div>
 
             <div className="flex flex-col gap-4">

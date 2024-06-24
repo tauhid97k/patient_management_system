@@ -25,7 +25,7 @@ const Navbar = () => {
                             <DropdownTrigger className="flex items-center justify-between gap-x-2 py-1 ps-1 pe-3 bg-zinc-100 dark:bg-zinc-900 rounded-full">
                                 <img
                                     className="w-8 h-auto rounded-full"
-                                    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
+                                    src="https://i.pravatar.cc/32"
                                     alt="profile image"
                                 />
                                 <span className="font-medium truncate max-w-[7.5rem]">
