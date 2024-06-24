@@ -8,7 +8,7 @@ const PatientsPage = ({ patients, filters }) => {
 
     // Search API (No debounce added for now)
     const handleSearch = (e) => {
-        router.visit("/patients", {
+        router.visit(route("patients.index"), {
             method: "get",
             data: { search: e.target.value },
             preserveState: true,

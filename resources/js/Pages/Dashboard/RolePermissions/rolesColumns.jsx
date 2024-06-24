@@ -1,6 +1,6 @@
 import Modal from "@/Components/Modal";
 import { Link, useForm } from "@inertiajs/react";
-import { Ban, Shield, Trash } from "lucide-react";
+import { Shield, Trash } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -11,13 +11,7 @@ export const rolesColumns = [
         cell: ({ row }) => {
             const { name } = row.original;
             return (
-                <span
-                    className={`text-lg font-medium capitalize px-3 py-1 rounded-full text-zinc-700 dark:text-white ${
-                        name === "admin"
-                            ? "bg-orange-200 dark:bg-orange-900/50"
-                            : "bg-zinc-200 dark:bg-zinc-900"
-                    }`}
-                >
+                <span className="text-lg font-medium capitalize px-3 py-1 rounded-full text-zinc-700 dark:text-white bg-zinc-200 dark:bg-zinc-900">
                     {name}
                 </span>
             );
@@ -51,31 +45,22 @@ export const rolesColumns = [
 
             return (
                 <>
-                    {name === "admin" ? (
-                        <div className="flex items-center gap-2">
-                            <Ban className="icon" />
-                            <span className="text-lg">
-                                No action required for admin
-                            </span>
-                        </div>
-                    ) : (
-                        <div className="flex gap-2 items-center">
-                            <Link
-                                href={route("rolePermissions.show", { id })}
-                                className="btn btn-secondary w-fit"
-                            >
-                                <Shield className="icon" />
-                                <span>Permissions</span>
-                            </Link>
-                            <button
-                                onClick={() => setConfirmRoleDelete(true)}
-                                className="btn btn-danger"
-                            >
-                                <Trash className="icon" />
-                                <span>Delete</span>
-                            </button>
-                        </div>
-                    )}
+                    <div className="flex gap-2 items-center">
+                        <Link
+                            href={route("rolePermissions.show", { id })}
+                            className="btn btn-secondary w-fit"
+                        >
+                            <Shield className="icon" />
+                            <span>Permissions</span>
+                        </Link>
+                        <button
+                            onClick={() => setConfirmRoleDelete(true)}
+                            className="btn btn-danger"
+                        >
+                            <Trash className="icon" />
+                            <span>Delete</span>
+                        </button>
+                    </div>
 
                     <Modal show={confirmRoleDelete} onClose={closeModal}>
                         <section className="space-y-5 p-5">

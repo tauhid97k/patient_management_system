@@ -11,7 +11,7 @@ class RolePermissionController extends Controller
     // Roles
     public function index(Request $request)
     {
-        $roles = Role::orderBy('name')->paginate();
+        $roles = Role::whereNot('name', 'admin')->latest()->paginate();
 
         return inertia('Dashboard/RolePermissions/Index', ['roles' => $roles]);
     }
