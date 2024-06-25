@@ -81,6 +81,15 @@ const ShowPatientDetailsPage = ({ patient, records }) => {
                     </p>
                     <p className="text-lg">
                         <span className="text-zinc-600 dark:text-zinc-400 font-medium">
+                            Appointment Date:
+                        </span>
+                        <span className="text-zinc-500 capitalize">
+                            {" "}
+                            {patient.created_at}
+                        </span>
+                    </p>
+                    <p className="text-lg">
+                        <span className="text-zinc-600 dark:text-zinc-400 font-medium">
                             Note:
                         </span>
                         <span className="text-zinc-500 capitalize">

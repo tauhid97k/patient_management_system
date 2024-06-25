@@ -27,6 +27,18 @@ class Patient extends Model
     ];
 
     /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'created_at' => 'datetime:d M Y',
+        ];
+    }
+
+    /**
      * Get the records of the patient.
      */
     public function records(): HasMany

@@ -37,7 +37,7 @@ const PatientsPage = ({ patients, filters }) => {
                     type="search"
                     name="search"
                     defaultValue={search}
-                    placeholder="Search name..."
+                    placeholder="Search phone number..."
                     className="input-contrast md:max-w-96"
                 />
                 <DataTable columns={columns} data={patients} />

@@ -1,5 +1,6 @@
 import Modal from "@/Components/Modal";
 import { Link, useForm, usePage } from "@inertiajs/react";
+import dayjs from "dayjs";
 import { Shield, Trash } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -20,6 +21,10 @@ export const rolesColumns = [
     {
         header: "Created At",
         accessorKey: "created_at",
+        cell: ({ row }) => {
+            const { created_at } = row.original;
+            return <span>{dayjs(created_at).format("D MMM YYYY")}</span>;
+        },
     },
     {
         header: "Action",

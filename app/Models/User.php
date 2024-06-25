@@ -12,6 +12,9 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasRoles;
 
+    /** Append role and permissions to auth user */
+    protected $appends = ['role', 'permissions'];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -29,6 +32,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
+        'roles',
         'password',
         'remember_token',
     ];
@@ -43,6 +47,19 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'created_at' => 'datetime:d M Y',
         ];
+    }
+
+    // Get Role
+    public function getRoleAttribute()
+    {
+        return $this->roles()->pluck('name')->first();
+    }
+
+    // Get Permissions
+    public function getPermissionsAttribute()
+    {
+        return $this->getPermissionsViaRoles()->pluck('name');
     }
 }

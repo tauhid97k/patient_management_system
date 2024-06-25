@@ -97,9 +97,7 @@ const EditUserPage = ({ user, roles }) => {
                             className="input-contrast capitalize"
                             defaultValue={user.role}
                         >
-                            <option value="" disabled>
-                                Select role
-                            </option>
+                            <option value="">Select role</option>
                             {roles.map((role) => (
                                 <option key={role.id} value={role.name}>
                                     {role.name}

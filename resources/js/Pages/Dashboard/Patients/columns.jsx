@@ -9,6 +9,7 @@ import Modal from "@/Components/Modal";
 import { useState } from "react";
 import { Link, useForm, usePage } from "@inertiajs/react";
 import { toast } from "sonner";
+import dayjs from "dayjs";
 
 export const columns = [
     {
@@ -41,8 +42,12 @@ export const columns = [
         accessorKey: "phone",
     },
     {
-        header: "Created At",
+        header: "Appointment Date",
         accessorKey: "created_at",
+        cell: ({ row }) => {
+            const { created_at } = row.original;
+            return <span>{dayjs(created_at).format("D MMM YYYY")}</span>;
+        },
     },
     {
         header: "Action",

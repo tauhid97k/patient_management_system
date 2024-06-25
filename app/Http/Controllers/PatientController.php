@@ -20,7 +20,7 @@ class PatientController extends Controller
         }
 
         $patients = Patient::query()->when($request->input('search'), function ($query, $search) {
-            $query->where('name', 'like', "%{$search}%");
+            $query->where('phone', 'like', "%{$search}%");
         })->orderBy('created_at', 'DESC')->paginate()->withQueryString();
 
         return inertia('Dashboard/Patients/Index', ['patients' => $patients, 'filters' => $request->only('search'), 'can' => [

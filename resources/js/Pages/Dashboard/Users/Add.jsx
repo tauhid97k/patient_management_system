@@ -88,9 +88,7 @@ const AddUserPage = ({ roles }) => {
                             name="role"
                             className="input-contrast capitalize"
                         >
-                            <option value="" disabled>
-                                Select role
-                            </option>
+                            <option value="">Select role</option>
                             {roles.map((role) => (
                                 <option key={role.id} value={role.name}>
                                     {role.name}

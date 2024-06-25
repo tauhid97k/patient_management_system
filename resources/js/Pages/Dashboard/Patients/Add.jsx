@@ -75,9 +75,7 @@ const AddPatientPage = () => {
                             name="gender"
                             className="input-contrast"
                         >
-                            <option value="" disabled>
-                                Select gender
-                            </option>
+                            <option value="">Select gender</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                             <option value="other">Other</option>
@@ -98,9 +96,7 @@ const AddPatientPage = () => {
                             name="blood_group"
                             className="input-contrast"
                         >
-                            <option value="" disabled>
-                                Select blood group
-                            </option>
+                            <option value="">Select blood group</option>
                             <option value="a_positive">A Positive</option>
                             <option value="a_negative">A Negative</option>
                             <option value="b_positive">B Positive</option>
@@ -126,9 +122,7 @@ const AddPatientPage = () => {
                             name="marital_status"
                             className="input-contrast"
                         >
-                            <option value="" disabled>
-                                Select marital status
-                            </option>
+                            <option value="">Select marital status</option>
                             <option value="married">Married</option>
                             <option value="unmarried">Unmarried</option>
                         </select>
