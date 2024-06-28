@@ -8,9 +8,9 @@ import AuthLayout from "@/Layouts/AuthLayout";
 import AppLayout from "@/Layouts/AppLayout";
 
 createInertiaApp({
-    resolve: (name) => {
-        const pages = import.meta.glob("./Pages/**/*.jsx", { eager: true });
-        let page = pages[`./Pages/${name}.jsx`];
+    resolve: async (name) => {
+        const pages = await import.meta.glob("./Pages/**/*.jsx");
+        let page = await pages[`./Pages/${name}.jsx`]();
         page.default.layout = page.default.layout
             ? page.default.layout
             : name.startsWith("Auth/")
